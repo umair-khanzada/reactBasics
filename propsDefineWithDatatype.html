@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props with data type</title>
+
+    <!--load external lib-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
+</head>
+<body>
+
+<!--App render here-->
+<div id="app"></div>
+
+<script type="text/babel">
+
+    //component code
+    var PropComponentWithDatatype = React.createClass({
+
+        //define props data type and required or not.
+        propTypes: {
+            name: React.PropTypes.string.isRequired,
+            nameIsRequired: React.PropTypes.bool.isRequired,
+            nameType: React.PropTypes.string.isRequired
+        },
+        render: function(){
+            //props use an attribute on tag in our case prop name is count.
+            return <div>Hi, What's your name ? <br />My name is: {this.props.name}<br />Hello {this.props.name} is name required in this component: {this.props.nameIsRequired} <br />and what's the name type: {this.props.nameType}</div>
+        }
+
+    })
+
+    //react reder function.
+    ReactDOM.render(
+
+        //used your component as a tag.
+        //used count prop same as html attribute.
+        <PropComponentWithDatatype name="Umair" nameIsRequired="true" nameType="string" />,
+        document.getElementById('app')
+
+    )
+</script>
+</body>
+</html>
