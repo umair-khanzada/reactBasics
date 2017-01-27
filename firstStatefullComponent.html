@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props with data type</title>
+
+    <!--load external lib-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
+</head>
+<body>
+
+<!--App render here-->
+<div id="app"></div>
+
+<script type="text/babel">
+
+    //component code
+    var StatefullComponent = React.createClass({
+
+        //define props data type and required or not.
+        propTypes: {
+            text: React.PropTypes.string.isRequired
+        },
+
+        //set initial state.
+        getInitialState: function(){
+            return {
+                text: this.props.text
+            }
+        },
+
+        //event handler for textarea.
+        textareaUpdated: function(event){
+            this.setState({
+                text: event.target.value
+            })
+        },
+        render: function(){
+            //props use an attribute on tag in our case prop name is count.
+            return <div><textarea value={this.state.text} onChange={this.textareaUpdated} /> <h3>Total character in textarera: {this.state.text.length}</h3></div>
+        }
+
+    })
+
+    //react reder function.
+    ReactDOM.render(
+
+        //used your component as a tag.
+        //used count prop same as html attribute.
+    <StatefullComponent text="Hello" />,
+            document.getElementById('app')
+
+    )
+</script>
+</body>
+</html>
