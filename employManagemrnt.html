@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--app title-->
+    <title>Manage employee</title>
+
+    <!--load external lib-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
+
+</head>
+<body>
+
+<!--App render here-->
+<div id="app" class="container"></div>
+
+<script type="text/babel">
+
+    //component code
+    var ManageEmployee = React.createClass({
+
+        //define props data type and required or not.
+        propTypes: {
+            employList: React.PropTypes.array.isRequired
+        },
+
+        getInitialState: function(){
+            return {
+                employList: this.props.employList
+            }
+        },
+
+        render: function(){
+            //props use an attribute on tag in our case prop name is count.
+            return(
+                <div>
+                    <table className="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Employee ID </th>
+                                <th>Employee Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>{
+                            this.state.employList.map(function(obj, i){
+                                return <tr> <td>{obj.employId}</td> <td>{obj.name}</td> <td> <button className="btn btn-info">Details</button> </td></tr>
+                            })
+                        }</tbody>
+                    </table>
+                </div>
+            )
+        }
+
+    })
+
+    //react reder function.
+    ReactDOM.render(
+
+        //used your component as a tag.
+        //used count prop same as html attribute.
+        <ManageEmployee employList={[{name: 'Owais', employId: 1}, {name: 'Zubair', employId: 2}, {name: 'Umair', employId: 3}, {name: 'Sohaib', employId: 4}]} />,
+        document.getElementById('app')
+
+    )
+</script>
+</body>
+</html>
